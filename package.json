@@ -1,0 +1,20 @@
+{
+  "name": "energy-controll-backend",
+  "description": "node backend for flutter app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [
+    "nodejs",
+    "express",
+    "docker"
+  ],
+  "dependencies": {
+    "argon2": "^0.40.1",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,5 @@
+FROM postgres:16
+ENV POSTGRES_USER neodim
+ENV POSTGRES_PASSWORD VerySecurePassword1234
+ENV POSTGRES_DB pdfs
+COPY init.sql /docker-entrypoint-initdb.d/
