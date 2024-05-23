@@ -10,10 +10,24 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL);
 
+CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL);
+
 CREATE TABLE user_favourites (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     file_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE
+);
+CREATE TABLE user_logs (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    action VARCHAR(255) NOT NULL,
+    file_id INTEGER,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE SET NULL
 );

@@ -2,7 +2,7 @@
   "name": "energy-controll-backend",
   "description": "node backend for flutter app",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "keywords": [
     "nodejs",
     "express",
@@ -10,11 +10,15 @@
   ],
   "dependencies": {
     "argon2": "^0.40.1",
+    "chai": "^5.1.1",
     "express": "^4.19.2",
+    "mocha": "^10.4.0",
     "multer": "^1.4.5-lts.1",
-    "pg": "^8.11.5"
+    "pg": "^8.11.5",
+    "sinon": "^18.0.0",
+    "supertest": "^7.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   }
 }

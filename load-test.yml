@@ -1,0 +1,16 @@
+config:
+  target: "http://127.0.0.1:3000"
+  phases:
+    - duration: 10
+      arrivalRate: 1000
+  defaults:
+    headers:
+      content-type: "application/json"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/search"
+          json:
+            searchQuery: "Нов"
+            userId: 1
