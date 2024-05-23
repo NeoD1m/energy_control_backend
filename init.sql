@@ -1,5 +1,6 @@
 CREATE TABLE files (
         id SERIAL PRIMARY KEY,
+        title VARCHAR(255),
         name VARCHAR(255),
         type VARCHAR(255),
         data BYTEA);
