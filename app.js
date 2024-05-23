@@ -7,11 +7,13 @@ const port = process.env.PORT || 3000;
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/files');
 const favouriteRoutes = require('./routes/favourites');
+const logsRoutes = require('./routes/logs');
 
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/files', upload.single('file'), fileRoutes);
 app.use('/favourites', favouriteRoutes);
+app.use('/logs', logsRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

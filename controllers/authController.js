@@ -9,6 +9,7 @@ const register = async (req, res) => {
       return res.status(409).send('Username already exists');
     }
     const hash = await argon2.hash(password);
+    console.log(hash);
     const result = await pool.query(
       'INSERT INTO users (name, password) VALUES ($1, $2) RETURNING *',
       [name, hash]
@@ -19,8 +20,6 @@ const register = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
-
-module.exports = register;
 
 const login = async (req, res) => {
   const { name, password } = req.body;
@@ -39,7 +38,26 @@ const login = async (req, res) => {
   }
 };
 
+const loginAdmin = async (req, res) => {
+  const adminLogin = req.body.adminLogin;
+  const adminPassword = req.body.adminPassword;
+  try {
+    const { rows } = await pool.query('SELECT * FROM admins WHERE name = $1', [adminLogin]);
+    const user = rows[0];
+    if (user && await argon2.verify(user.password, adminPassword)) {
+      const { password, ...userWithoutPassword } = user;
+      res.status(200).json(userWithoutPassword);
+    } else {
+      res.status(401).send('Invalid credentials');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+};
+
 module.exports = {
   login,
-  register
+  register,
+  loginAdmin
 };

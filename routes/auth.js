@@ -10,4 +10,8 @@ router.post('/login', function(req, res) {
   authController.login(req, res);
 });
 
+router.post('/loginAdmin', function(req, res) {
+  authController.loginAdmin(req, res);
+});
+
 module.exports = router;

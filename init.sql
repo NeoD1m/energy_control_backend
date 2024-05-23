@@ -22,6 +22,7 @@ CREATE TABLE user_favourites (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE
 );
+
 CREATE TABLE user_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -31,3 +32,5 @@ CREATE TABLE user_logs (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE SET NULL
 );
+
+INSERT INTO admins (name, password) VALUES ('admin', '$argon2id$v=19$m=65536,t=3,p=4$vLzzSfT5Meb9evy0YXuniQ$h44fuu37MuH6h5qZIzEoFLS0fNVPLSwE/ZnsgT1CIaQ');

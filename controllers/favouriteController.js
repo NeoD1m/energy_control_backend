@@ -1,9 +1,11 @@
 const pool = require('../config/db');
+const logAction = require('../utils/logAction');
 
 const addFavourite = async (req, res) => {
   const { userId, fileId } = req.body;
   try {
     const favourite = await addFavouritePDF(userId, fileId);
+    await logAction(userId,"Файл добавлен в избранное",fileId);
     res.json(favourite);
   } catch (error) {
     res.status(500).send('Error adding to favourites');
@@ -21,6 +23,7 @@ const removeFavourite = async (req, res) => {
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'File not found in favorites' });
     }
+    await logAction(userId,action="Файл удален из избранного",fileId);
     res.status(200).json({ message: 'File removed from favorites successfully' });
   } catch (error) {
     console.error('Error removing file from favorites', error);
